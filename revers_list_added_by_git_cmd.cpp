@@ -15,13 +15,13 @@ public:
 Node* revertList(Node* root)
 {
 
-    if(root==NULL||root->next==NULL)
+    if(root==nullptr||root->next==nullptr)
         return root;
 
     Node* nextNode = revertList(root->next);
 
     root->next->next = root;
-    root->next = NULL;
+    root->next = nullptr;
     return nextNode;
 }
 
@@ -30,16 +30,20 @@ int main()
 
     Node* first = new Node(1);
     Node* second = new Node(2);
+    Node* third = new Node(3);
 
     first->next = second;
-    second->next = nullptr;
+    second->next = third;
+    third->next = nullptr;
     first->thisNode();
     first->next->thisNode();
+    first->next->next->thisNode();
     std::cout << std::endl;
 
     first = revertList(first);
     first->thisNode();
     first->next->thisNode();
+    first->next->next->thisNode();
 
 
     return 0;
